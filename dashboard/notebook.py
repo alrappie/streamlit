@@ -7,6 +7,13 @@ import seaborn as sns
 # Load cleaned data
 all_df = pd.read_csv("dashboard/used_data.csv")
  
+ 
+genre = st.selectbox(
+    label="Select city",
+    options=tuple(set(all_df.customer_city))
+)
+
+ 
 most_selling_product = all_df.groupby('product_category_name_english').agg({
     'product_id':'count',
     'price':'sum'
