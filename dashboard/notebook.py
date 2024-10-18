@@ -20,7 +20,7 @@ most_profitable_product = all_df.groupby('product_category_name_english').agg({
 # plot number of daily orders (2021)
 st.header('Dicoding Collection Dashboard :sparkles:')
 
-st.subheader("Best & Worst Performing Product")
+st.subheader("Top Selling & Profitable Product Category")
  
 fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(35, 15))
  
@@ -35,7 +35,7 @@ ax[0].tick_params(axis='x', labelsize=30)
  
 sns.barplot(x="price", y="product_category_name_english", data=most_profitable_product.head(5).reset_index(), palette=colors, ax=ax[1])
 ax[1].set_ylabel(None)
-ax[1].set_xlabel("Number of Sales", fontsize=30)
+ax[1].set_xlabel("Number of Sales (in million)", fontsize=30)
 ax[1].invert_xaxis()
 ax[1].yaxis.set_label_position("right")
 ax[1].yaxis.tick_right()
