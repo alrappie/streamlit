@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 # Load cleaned data
-all_df = pd.read_csv("./used_data.csv")
+all_df = pd.read_csv("dashboard/used_data.csv")
  
 most_selling_product = all_df.groupby('product_category_name_english').agg({
     'product_id':'count',
