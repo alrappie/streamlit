@@ -1,7 +1,9 @@
-streamlit==1.30.0
+ipython==8.7.0
+ipython-genutils==0.2.0
 matplotlib-inline==0.1.6
 seaborn==0.12.1
 Babel==2.12.1
 numpy==1.25.2
 pandas==2.1.4
 seaborn==0.13.0
+streamlit==1.30.0
