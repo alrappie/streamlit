@@ -63,22 +63,19 @@ most_profitable_product = df2.groupby('product_category_name_english').agg({
 }).sort_values('price', ascending=False)
 
 # Plot Most Selling and Most Profitable Products
-col1, col2 = st.columns((2))
 fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(35, 15))
 
 colors = ["#90CAF9", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3"]
-with col1:
-    sns.barplot(x="product_id", y="product_category_name_english", 
-                data=most_selling_product.head(5).reset_index(), palette=colors, ax=ax[0])
-    ax[0].set_title("Most Selling Product", fontsize=20)
-    ax[0].set_xlabel("Number of Sales")
+sns.barplot(x="product_id", y="product_category_name_english", 
+            data=most_selling_product.head(5).reset_index(), palette=colors, ax=ax[0])
+ax[0].set_title("Most Selling Product", fontsize=20)
+ax[0].set_xlabel("Number of Sales")
 
-with col2:
-    sns.barplot(x="price", y="product_category_name_english", 
-                data=most_profitable_product.head(5).reset_index(), palette=colors, ax=ax[1])
-    ax[1].set_title("Most Profitable Product", fontsize=20)
-    ax[1].set_xlabel("Total Revenue")
-    ax[1].invert_xaxis()
+sns.barplot(x="price", y="product_category_name_english", 
+            data=most_profitable_product.head(5).reset_index(), palette=colors, ax=ax[1])
+ax[1].set_title("Most Profitable Product", fontsize=20)
+ax[1].set_xlabel("Total Revenue")
+ax[1].invert_xaxis()
 
 st.pyplot(fig)
 
