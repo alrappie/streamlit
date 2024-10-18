@@ -12,16 +12,16 @@ st.header('Dicoding Collection Dashboard :sparkles:')
 col1, col2 = st.columns((2))
 
 with col1:
-    city = st.selectbox(
+    city = st.sidebar.multiselect(
         label="Select city",
-        options=tuple(set(all_df.customer_city))
+        options=all_df.customer_city.unique()
     )
 
 with col2:
     if not city:
         df2 = all_df.copy()
     else:
-        df2 = all_df[all_df.customer_city=='city']
+        df2 = all_df[all_df.customer_city==city]
         
     most_selling_product = df2.groupby('product_category_name_english').agg({
         'product_id':'count',
