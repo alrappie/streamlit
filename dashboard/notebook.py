@@ -62,7 +62,7 @@ most_profitable_product = df2.groupby('product_category_name_english').agg({
     'price': 'sum'
 }).sort_values('price', ascending=False)
 
-# Plot
+# Plot Most Selling and Most Profitable Products
 col1, col2 = st.columns((2))
 fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(35, 15))
 
@@ -81,3 +81,18 @@ with col2:
     ax[1].invert_xaxis()
 
 st.pyplot(fig)
+
+# Plot trend line of daily orders over time
+df_trend = df2[['order_purchase_timestamp', 'product_id']].set_index('order_purchase_timestamp')
+df_trend = df_trend.resample('D').count().reset_index()
+
+st.subheader("Trend Line of Daily Purchases Over Time")
+
+plt.figure(figsize=(12, 6))
+sns.lineplot(x='order_purchase_timestamp', y='product_id', data=df_trend, color='#1f77b4')
+plt.title('Daily Purchases Trend', fontsize=16)
+plt.xlabel('Date', fontsize=12)
+plt.ylabel('Number of Purchases', fontsize=12)
+plt.xticks(rotation=45)
+
+st.pyplot(plt)
